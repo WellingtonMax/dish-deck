@@ -5,7 +5,7 @@ API Dishdeck é uma aplicação para gerenciar produtos e categorias de produtos
 
 A API permite que os administradores do restaurante acessem o sistema, criem, atualizem e excluam categorias e produtos.
 
-## Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
 - Node.js
 - Express.js
 - MongoDB
@@ -15,37 +15,37 @@ A API permite que os administradores do restaurante acessem o sistema, criem, at
 - Dotenv
 - Express Validator
 
-## Instalação
+## ⚙️Instalação
 1. Clone o repositório.
 2. Execute `npm install` para instalar as dependências.
 3. Renomeie o arquivo `.env.example` para `.env` e preencha as variáveis de ambiente.
 4. Execute `npm start` para iniciar o servidor.
 
-## Endpoints
+## 🚀 Endpoints
 A API Dishdeck oferece os seguintes endpoints:
 
-### Autenticação
+### 🔑 Autenticação
 - POST `/api/auth/register`: cria uma nova conta de administrador.
 - POST `/api/auth/login`: faz login na conta de administrador e recebe um token JWT.
 
-### Categorias
+### 📚 Categorias
 - GET `/api/categories`: lista todas as categorias de produtos.
 - GET `/api/categories/:id`: obtém uma categoria pelo ID.
 - POST `/api/categories`: cria uma nova categoria.
 - PUT `/api/categories/:id`: atualiza uma categoria existente.
 - DELETE `/api/categories/:id`: exclui uma categoria.
 
-### Produtos
+### 🛒Produtos
 - GET `/api/products`: lista todos os produtos.
 - GET `/api/products/:id`: obtém um produto pelo ID.
 - POST `/api/products`: cria um novo produto.
 - PUT `/api/products/:id`: atualiza um produto existente.
 - DELETE `/api/products/:id`: exclui um produto.
 
-## Middleware
+## 🔓 Middleware
 - `authMiddleware`: verifica se o usuário está autenticado e tem permissão para acessar determinado endpoint.
 
-## Exemplo de uso
+## 🖥️ Exemplo de uso
 Para criar uma nova categoria, faça uma requisição POST para `http://localhost:3000/api/categories` com o seguinte corpo:
 
     {

@@ -1,27 +1,34 @@
 import { Request, Response } from 'express';
-import User from './userModel';
-import bcrypt from 'bcryptjs';
+import User, { User as UserModel } from '../authentication/userModel';
+import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-export const signUp = async (req: Request, res: Response) => {
-  try {
-    const { email, password } = req.body;
-    const userExists = await User.findOne({ email });
+export const login = async (req: Request, res: Response): Promise<void> => {
+  const { email, password } = req.body;
 
-    if (userExists) {
-      return res.status(400).json({ message: 'User already exists' });
+  try {
+    const user = await User.findOne({ email }) as UserModel | null;
+
+    if (!user) {
+      res.status(401).json({ message: 'Invalid email or password' });
+      return;
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ email, password: hashedPassword });
-    await newUser.save();
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
-        const token = jwt.sign({ id: newUser._id }, config.secret, {
-        expiresIn: 86400, // 24 hours
-        });
+    if (!isPasswordCorrect) {
+      res.status(401).json({ message: 'Invalid email or password' });
+      return;
+    }
 
-    res.status(201).json({ token });
-  } catch (error) {
-    res.status(500).json({ message: 'Error creating user', error });
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET!);
+
+    res.json({ token });
+  } catch (err) {
+    if (err instanceof Error) {
+      res.status(500).json({ message: err.message });
+    } else {
+      res.status(500).json({ message: 'An error occurred' });
+    }
   }
 };

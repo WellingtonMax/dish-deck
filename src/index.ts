@@ -1,30 +1,44 @@
-import 'dotenv/config';
-import express, { Application, Request, Response} from 'express';
-const mongoose = require('mongoose');
-import { config } from './config/environment';
+import express from 'express';
+import cors from 'cors';
+import { urlencoded, json } from 'body-parser';
+import dotenv from 'dotenv';
+import connectToDatabase from './config/database';
+import categoryRoute from './category/categoryRoute';
+import productRoute from './product/productRoute';
+import authRoute from './authentication/authRoute';
+import { authMiddleware } from '../src/authentication/authMiddleware';
+// import errorHandler from './utils/errorHandler';
 
-// import authRoutes from './authentication/authRoute';
-// import categoryRoutes from './category/categoryRoute';
-// import productRoutes from './product/productRoute';
+dotenv.config();
 
+(async () => {
+  try {
+    await connectToDatabase();
+  } catch (err) {
+    console.error(`Error connecting to database: ${err}`);
+  }
 
-const app: Application = express();
+  const app: express.Application = express();
 
-mongoose.connect(config.mongoUri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true
-})
+  app.use(cors());
+  app.use(urlencoded({ extended: true }));
+  app.use(json());
 
+  app.use('/api/auth', authRoute);
 
-app.use(express.json());
+  // Rotas públicas
+  app.use('/api/categories', categoryRoute);
 
+  // Rotas protegidas por autenticação
+  app.use(authMiddleware);
+  app.use('/api/categories', categoryRoute);
+  app.use('/api/products', productRoute);
 
-//app.use('/auth', authRoutes);
-//app.use('/category, categoryRoutes);
-//app.use('/product, productRoutes);
+  // app.use(errorHandler);
 
+  const port = process.env.PORT || 3000;
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Bem-vindo ao cardápio online!');
-});
+  app.listen(port, () => {
+    console.log(`Server listening on port ${port}`);
+  });
+})();

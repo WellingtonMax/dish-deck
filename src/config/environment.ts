@@ -1,10 +1,5 @@
-import 'dotenv/config';
-
-export const config = {
-  port: process.env.PORT || 3000,
-  mongoUri: process.env.MONGO_URI || 'mongodb://localhost:27017/dish_deck',
-  mongooseOptions: {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  },
-};
+export default {
+  PORT: process.env.PORT || 3000,
+  MONGODB_URI: process.env.MONGODB_URI || 'mongodb://localhost/myapp',
+  JWT_SECRET: process.env.JWT_SECRET || 'mysecretkey'
+}

@@ -6,14 +6,16 @@ API Dishdeck é uma aplicação para gerenciar produtos e categorias de produtos
 A API permite que os administradores do restaurante acessem o sistema, criem, atualizem e excluam categorias e produtos.
 
 ## 🛠️ Tecnologias Utilizadas
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- JsonWebToken
-- Bcrypt
-- Dotenv
-- Express Validator
+- Node.js: Optei pelo Node.js porque ele usa JavaScript, uma linguagem que eu gosto e que é bastante versátil. Além disso, o Node.js me permite desenvolver aplicações de servidor de forma rápida e com ótimo desempenho.
+- Express.js:  Escolhi o Express.js por ser um framework web minimalista e fácil de usar, além de ser muito popular entre os desenvolvedores. Ele tem tudo o que eu preciso para criar APIs eficientes.
+- MongoDB: Decidi usar o MongoDB por ser um banco de dados NoSQL orientado a documentos que oferece escalabilidade e flexibilidade. Ele também se integra facilmente com o Node.js e é ótimo para armazenar dados em formato JSON.
+- Mongoose: O Mongoose facilita bastante a minha vida ao trabalhar com o MongoDB, pois me ajuda a gerenciar a conexão, esquemas e consultas ao banco de dados. Por isso, achei que seria uma boa escolha para esse projeto.
+- JsonWebToken: Para lidar com a autenticação na API, optei pelo JsonWebToken (JWT) porque ele me permite criar tokens de maneira simples e segura. Assim, consigo garantir a segurança e a integridade dos dados.
+- Bcrypt: Escolhi o Bcrypt para proteger as senhas dos usuários, já que ele é uma biblioteca robusta e fácil de usar para hashing de senhas.
+- Dotenv: Decidi usar o Dotenv para gerenciar as variáveis de ambiente do projeto, porque ele me permite armazenar informações sensíveis, como credenciais de acesso, de forma segura e organizada.
+- Express Validator: Por último, escolhi o Express Validator para validar e sanitizar os dados de entrada na API. Ele se integra facilmente com o Express.js e tem várias funções de validação que facilitam o meu trabalho.
+
+Acredito que essas tecnologias formam um conjunto coeso e eficiente para a construção de uma API moderna e escalável. Com elas, consegui implementar os requisitos do projeto e desenvolver novos recursos de forma rápida e descomplicada.
 
 ## ⚙️Instalação
 1. Clone o repositório.
